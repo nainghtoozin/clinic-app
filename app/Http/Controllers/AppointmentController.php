@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -69,8 +70,20 @@ class AppointmentController extends Controller
 
     public function show(Appointment $appointment)
     {
-        $appointment->load('doctor.user', 'service');
+        // $appointment->load('doctor.user', 'service');
 
-        return view('appointments', compact('appointment'));
+        // return view('appointments', compact('appointment'));
+        $doctor = Auth::user()->doctor;
+
+        $todayCount = $doctor->appointments()->count();
+        $pendingCount = $doctor->appointments()->where('status', 'pending')->count();
+        $completedCount = $doctor->appointments()->where('status', 'completed')->count();
+
+        $appointments = $doctor->appointments()
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('appointments', compact('appointments', 'todayCount', 'pendingCount', 'completedCount'));
     }
 }

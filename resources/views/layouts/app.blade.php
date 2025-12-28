@@ -94,6 +94,24 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route('categories.index') }}" class="nav-link">
+                    🗂️ Categories
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('products.index') }}" class="nav-link">
+                    🗂️ Products
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('public.doctors') }}" class="nav-link">
+                    👥 Website
+                </a>
+            </li>
+
             <li class="nav-item mt-3">
                 <small class="text-white-50 ps-2">MANAGEMENT</small>
             </li>

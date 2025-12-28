@@ -40,6 +40,8 @@
             </div>
         </div>
     </section>
+
+    {{-- doctors list --}}
     <section id="doctors" class="py-5">
         <div class="container">
             <h2 class="text-center fw-bold mb-4">Our Doctors</h2>
@@ -77,6 +79,70 @@
             </div>
         </div>
     </section>
+
+    {{-- products list --}}
+    <section id="products" class="py-5 bg-light">
+        <div class="container">
+
+            <h2 class="text-center fw-bold mb-4">Our Products</h2>
+
+            <div class="row g-4">
+                @foreach ($products as $product)
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0">
+
+                            {{-- Product Image --}}
+                            @if ($product->image)
+                                <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top"
+                                    style="height:200px; object-fit:cover;">
+                            @else
+                                <div class="bg-secondary text-white d-flex align-items-center justify-content-center"
+                                    style="height:200px;">
+                                    No Image
+                                </div>
+                            @endif
+
+                            {{-- Product Info --}}
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold mb-1">
+                                    {{ $product->name }}
+                                </h6>
+
+                                <p class="text-muted small mb-2">
+                                    {{ Str::limit($product->description, 60) }}
+                                </p>
+
+                                <h5 class="text-primary fw-bold mb-3">
+                                    ${{ number_format($product->price, 2) }}
+                                </h5>
+                            </div>
+
+                            {{-- Actions --}}
+                            <div class="card-footer bg-white border-0">
+                                <div class="d-grid gap-2">
+                                    <a href="{{ route('products.show', $product) }}"
+                                        class="btn btn-outline-primary btn-sm">
+                                        View Details
+                                    </a>
+
+                                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-primary btn-sm w-100">
+                                            Add to Cart
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+        </div>
+    </section>
+
+
     <section class="py-5 bg-white">
         <div class="container">
             <div class="row text-center">

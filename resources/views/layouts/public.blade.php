@@ -56,6 +56,7 @@
                     <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Product</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
 
@@ -97,7 +98,7 @@
 
                                 {{-- Appointment List --}}
                                 <li>
-                                    <a href="{{ route('appointments.index') }}" class="btn btn-light btn-lg">
+                                    <a href="{{ route('public.appointments.show') }}" class="dropdown-item">
                                         <i class="bi bi-calendar-check me-2"></i>
                                         My Appointments
                                     </a>
