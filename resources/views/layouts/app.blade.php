@@ -89,6 +89,12 @@
             </li>
 
             <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link">
+                    👨‍⚕️ Users
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a href="{{ route('appointments.index') }}" class="nav-link">
                     📅 Appointments
                 </a>

@@ -125,12 +125,10 @@
                                         View Details
                                     </a>
 
-                                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                        @csrf
-                                        <button class="btn btn-primary btn-sm w-100">
-                                            Add to Cart
-                                        </button>
-                                    </form>
+
+                                    <button onclick="addToCart({{ $product->id }})" class="btn btn-sm btn-primary">
+                                        Add to Cart
+                                    </button>
                                 </div>
                             </div>
 
@@ -186,4 +184,14 @@
             </p>
         </div>
     </section>
+
+
+    <script>
+        function addToCart(productId) {
+            axios.post(`/cart/add/${productId}`)
+                .then(() => {
+                    alert('Added to cart');
+                });
+        }
+    </script>
 </x-public-layout>

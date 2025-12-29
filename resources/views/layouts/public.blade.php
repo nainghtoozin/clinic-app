@@ -9,6 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -56,16 +57,29 @@
                     <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Product</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
 
                 <div class="d-flex align-items-center gap-2">
 
+                    <a href="{{ route('cart.index') }}" class="position-relative text-decoration-none me-4">
+                        <i class="bi bi-cart fs-4"></i>
+
+                        @if (session('cart'))
+                            <span class="badge bg-danger position-absolute top-0 start-100">
+                                {{ count(session('cart')) }}
+                            </span>
+                        @endif
+                    </a>
+
                     {{-- Book Appointment Button (Public) --}}
                     <a href="#appointment" class="btn btn-primary btn-rounded">
                         Book Appointment
                     </a>
+
+
+
 
                     {{-- Guest --}}
                     @guest
@@ -141,6 +155,11 @@
             </small>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
 
 </body>
 
