@@ -78,9 +78,6 @@
                         Book Appointment
                     </a>
 
-
-
-
                     {{-- Guest --}}
                     @guest
                         <a href="{{ route('login') }}" class="btn btn-outline-primary">
@@ -111,12 +108,13 @@
                                 </li>
 
                                 {{-- Appointment List --}}
-                                <li>
-                                    <a href="{{ route('public.appointments.show') }}" class="dropdown-item">
-                                        <i class="bi bi-calendar-check me-2"></i>
-                                        My Appointments
-                                    </a>
-                                </li>
+                                @notPatient
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('appointments.index') }}">
+                                            My Appointments
+                                        </a>
+                                    </li>
+                                @endnotPatient
 
                                 <li>
                                     <hr class="dropdown-divider">

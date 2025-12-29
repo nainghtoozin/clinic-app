@@ -14,6 +14,7 @@
 
                     <select class="form-select" name="role" id="role">
                         <option value="admin">Admin</option>
+                        <option value="doctor">Doctor</option>
                         <option value="patient">Patient</option>
                     </select>
 
