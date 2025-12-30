@@ -22,4 +22,18 @@ class Doctor extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
+
+    // app/Models/Doctor.php
+    public function followers()
+    {
+        return $this->belongsToMany(
+            Patient::class,
+            'doctor_patient'
+        )->withTimestamps();
+    }
 }

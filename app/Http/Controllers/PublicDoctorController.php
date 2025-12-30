@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Blog;
 use App\Models\Doctor;
 use App\Models\Product;
 use App\Models\Service;
@@ -18,7 +19,8 @@ class PublicDoctorController extends Controller
         $doctors = Doctor::with(['user', 'service'])
             ->latest()
             ->paginate(10);
+        $blogs = Blog::latest()->take(3)->get();
         $appointments = Appointment::all();
-        return view('public.doctors.index', compact('doctors', 'services', 'appointments', 'products'));
+        return view('public.doctors.index', compact('doctors', 'services', 'appointments', 'products', 'blogs'));
     }
 }

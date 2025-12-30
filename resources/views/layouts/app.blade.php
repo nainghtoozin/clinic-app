@@ -118,6 +118,12 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route('blogs.index') }}" class="nav-link">
+                    👥 Blog
+                </a>
+            </li>
+
             <li class="nav-item mt-3">
                 <small class="text-white-50 ps-2">MANAGEMENT</small>
             </li>

@@ -12,7 +12,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PublicDoctorController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\PatientController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DoctorFollowController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,6 +23,11 @@ Route::get('/doctors/{doctor}/book', [AppointmentController::class, 'create']);
 Route::post('/appointments/{doctor}', [AppointmentController::class, 'store']);
 Route::resource('appointments', AppointmentController::class);
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+Route::resource('blogs', BlogController::class);
+
+// routes/web.php
+Route::post('/doctors/{doctor}/follow', [DoctorFollowController::class, 'toggle'])->name('doctors.follow')->middleware('auth');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

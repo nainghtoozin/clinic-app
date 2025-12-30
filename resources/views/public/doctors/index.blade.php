@@ -140,6 +140,55 @@
         </div>
     </section>
 
+    <section id="blogs" class="py-5 bg-white">
+        <div class="row">
+            @foreach ($blogs as $blog)
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        @if ($blog->image)
+                            <img src="{{ asset('storage/' . $blog->image) }}" class="card-img-top"
+                                style="height:150px; object-fit:cover;">
+                        @endif
+                        <div class="card-body">
+                            <h5>{{ $blog->title }}</h5>
+                            <p class="text-muted small">
+                                {{ Str::limit(strip_tags($blog->content), 80) }}
+                            </p>
+
+                            <p class="text-muted">
+                                By {{ $blog->doctor->user->name ?? 'Clinic Admin' }}
+                            </p>
+
+                            <a href="{{ route('blogs.show', $blog) }}" class="btn btn-sm btn-outline-primary">
+                                View
+                            </a>
+                            <a href="#" class="btn btn-sm btn-primary">Read More <i
+                                    class="bi bi-arrow-right"></i></a>
+                            @auth
+                                @php
+                                    $patient = auth()->user()->patient;
+                                    $isFollowing = $patient ? $patient->followedDoctors->contains($doctor->id) : false;
+                                @endphp
+
+                                <form action="{{ route('doctors.follow', $doctor) }}" method="POST">
+                                    @csrf
+                                    <button
+                                        class="btn btn-sm {{ $isFollowing ? 'btn-outline-danger' : 'btn-outline-success' }}">
+                                        {{ $isFollowing ? 'Unfollow' : 'Follow' }}
+                                    </button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary">
+                                    Login to Follow
+                                </a>
+                            @endauth
+
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </section>
 
     <section class="py-5 bg-white">
         <div class="container">

@@ -19,4 +19,13 @@ class Patient extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // app/Models/Patient.php
+    public function followedDoctors()
+    {
+        return $this->belongsToMany(
+            Doctor::class,
+            'doctor_patient'
+        )->withTimestamps();
+    }
 }
